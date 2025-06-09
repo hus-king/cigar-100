@@ -29,17 +29,17 @@ class_names = [
     "dolphin",
     "hamster",
     "lion",
-    "maple",
+    "maple_tree",
     "orange",
     "orchid",
-    "pickup",
+    "pickup_truck",
     "pine",
     "rabbit",
     "skyscraper",
     "squirrel",
     "tractor",
     "turtle",
-    "willow"
+    "willow_tree"
 ]
 
 # 推理函数
@@ -53,7 +53,9 @@ def predict_image(image_path):
 
 # 示例调用
 if __name__ == "__main__":
-    image_path = "./test.png"  # 替换为无人机采集的图片路径
-    predicted_class = predict_image(image_path)
-    print(f"Predicted class index: {predicted_class}")
-    print(f"Predicted class name: {class_names[predicted_class]}")
+    test_dir = "./test"
+    for fname in os.listdir(test_dir):
+        if fname.lower().endswith(".png"):
+            image_path = os.path.join(test_dir, fname)
+            predicted_class = predict_image(image_path)
+            print(f"{fname}: {class_names[predicted_class]}")
